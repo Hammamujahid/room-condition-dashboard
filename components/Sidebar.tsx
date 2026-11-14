@@ -24,13 +24,13 @@ export default function Sidebar({ open, onClose }: Props) {
           <span className="side-icon">
             <Icon name="grid" />
           </span>
-          <span className="side-name">Semua Lab</span>
+          <span className="side-name">Laboratorium TEKMED</span>
         </button>
 
         <div className="side-foot">
           <span className="foot-row">
             <span className="dot" />
-            Server Terhubung
+            Terhubung
           </span>
           <span className="foot-sub">Sistem Informasi Monitoring Lab</span>
         </div>

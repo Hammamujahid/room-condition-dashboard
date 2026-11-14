@@ -34,11 +34,14 @@ export default function Home() {
     return [...list].sort((a, b) => a.id.localeCompare(b.id));
   }, [groups, q, f]);
 
-  const stats = useMemo(() => {
-    const acc: Record<string, number> = { total: shown.length, baik: 0, periksa: 0, tunggu: 0 };
-    for (const g of shown) acc[conditionOf(g)] += 1;
-    return acc;
-  }, [shown]);
+  const count = (s: "baik" | "periksa" | "tunggu") =>
+    shown.filter((g) => conditionOf(g) === s).length;
+  const stats: Record<string, number> = {
+    total: shown.length,
+    baik: count("baik"),
+    periksa: count("periksa"),
+    tunggu: count("tunggu"),
+  };
 
   return (
     <div className="shell">
@@ -55,9 +58,9 @@ export default function Home() {
             <Icon name="menu" />
           </button>
           <div className="title-block">
-            <h1>Semua Lab</h1>
+            <h1>Laboratorium - Lab TEKMED</h1>
             <p className="muted">
-              Pantau kondisi {groups.length} laboratorium secara realtime.
+              Monitoring kondisi {groups.length} laboratorium secara realtime.
             </p>
           </div>
         </div>
@@ -77,13 +80,11 @@ export default function Home() {
         </section>
 
         <header className="top">
-          <div className="top-left">
           <div className="title-block">
-            <h1>Semua Lab</h1>
+            <h1>Laboratorium - Lab Teknologi Elektro-Medis</h1>
             <p className="muted">
-              Pantau kondisi {groups.length} laboratorium secara realtime.
+              Monitoring kondisi {groups.length} laboratorium secara realtime.
             </p>
-          </div>
           </div>
           <div className="actions">
             <div className="input-wrap">
@@ -129,7 +130,7 @@ export default function Home() {
               <div className="card empty">
                 <Icon name="search" className="empty-ic" />
                 <strong>Lab tidak ditemukan</strong>
-                <span className="muted small">Coba kata kunci lain.</span>
+                <span className="muted small">Coba kata kunci atau filter lain.</span>
               </div>
             )}
           </section>
