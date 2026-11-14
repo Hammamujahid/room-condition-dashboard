@@ -19,6 +19,7 @@ export default function Home() {
   const { groups, loading, now } = useGroups();
   const [q, setQ] = useState("");
   const [f, setF] = useState<Filter>("semua");
+  const [navOpen, setNavOpen] = useState(false);
 
   const shown = useMemo(() => {
     let list = f === "semua" ? groups : groups.filter((g) => conditionOf(g) === f);
@@ -41,9 +42,26 @@ export default function Home() {
 
   return (
     <div className="shell">
-      <Sidebar />
+      <Sidebar open={navOpen} onClose={() => setNavOpen(false)} />
 
       <div className="content">
+        <div className="mobile-bar">
+          <button
+            type="button"
+            className="icon-btn menu-btn"
+            aria-label="Buka menu"
+            onClick={() => setNavOpen(true)}
+          >
+            <Icon name="menu" />
+          </button>
+          <div className="title-block">
+            <h1>Semua Lab</h1>
+            <p className="muted">
+              Pantau kondisi {groups.length} laboratorium secara realtime.
+            </p>
+          </div>
+        </div>
+
         <section className="summary">
           {STAT_META.map((s) => (
             <div className={`card stat ${s.cls}`} key={s.key}>
@@ -60,12 +78,12 @@ export default function Home() {
 
         <header className="top">
           <div className="top-left">
-            <div>
-              <h1>Semua Lab</h1>
-              <p className="muted">
-                Pantau kondisi {groups.length} laboratorium secara realtime.
-              </p>
-            </div>
+          <div className="title-block">
+            <h1>Semua Lab</h1>
+            <p className="muted">
+              Pantau kondisi {groups.length} laboratorium secara realtime.
+            </p>
+          </div>
           </div>
           <div className="actions">
             <div className="input-wrap">

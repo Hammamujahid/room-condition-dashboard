@@ -1,6 +1,15 @@
 import Icon from "./Icons";
 import StatusPill from "./StatusPill";
-import { fmt, timeAgo } from "@/lib/sensors";
+import {
+  fmt,
+  timeAgo,
+  TEMP_MIN,
+  TEMP_MAX,
+  HUM_MIN,
+  HUM_MAX,
+  LIGHT_MIN,
+  LIGHT_MAX,
+} from "@/lib/sensors";
 import type { Group, IconName } from "@/types/sensor";
 
 interface ParamProps {
@@ -33,6 +42,9 @@ export default function GroupCard({ g, now }: { g: Group; now: number }) {
   const cls = (c: string) => (stale ? "stale" : c);
   const battDanger = g.battery != null && g.battery < g.limits.lowBattery;
   const labName = g.short.replace(/Laboratorium/gi, "Lab");
+  const tOut = g.temperature != null && (g.temperature < TEMP_MIN || g.temperature > TEMP_MAX);
+  const hOut = g.humidity != null && (g.humidity < HUM_MIN || g.humidity > HUM_MAX);
+  const lOut = g.light != null && (g.light < LIGHT_MIN || g.light > LIGHT_MAX);
   return (
     <div className={`card group-card${stale ? " is-stale" : ""}`}>
       <div className="row">
@@ -46,9 +58,9 @@ export default function GroupCard({ g, now }: { g: Group; now: number }) {
       </div>
 
       <div className="param-row">
-        <Param icon="thermometer" label="Suhu" value={g.temperature} unit="°C" cls={cls("c-t")} />
-        <Param icon="droplet" label="Kelembapan" value={g.humidity} unit="%" cls={cls("c-h")} />
-        <Param icon="sun" label="Cahaya" value={g.light} unit="lux" cls={cls("c-l")} />
+        <Param icon="thermometer" label="Suhu" value={g.temperature} unit="°C" cls={tOut ? "danger" : cls("c-t")} />
+        <Param icon="droplet" label="Kelembapan" value={g.humidity} unit="%" cls={hOut ? "danger" : cls("c-h")} />
+        <Param icon="sun" label="Cahaya" value={g.light} unit="lux" cls={lOut ? "danger" : cls("c-l")} />
       </div>
 
       <div className="batt-row">

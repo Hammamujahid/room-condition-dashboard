@@ -1,9 +1,15 @@
 import type { CategoryId, Group, IconName, Limits, LiveData, Status } from "@/types/sensor";
 
 export const OFFLINE_AFTER_MS = 60_000; // tanpa update > 60 detik = offline
-export const DEFAULT_LIMITS: Limits = { lowBattery: 20, tempMin: 18, tempMax: 35 };
-export const HUM_MIN = 30;
-export const HUM_MAX = 80;
+export const DEFAULT_LIMITS: Limits = { lowBattery: 20, tempMin: 30, tempMax: 35 };
+
+/** Threshold kondisi ruangan */
+export const TEMP_MIN = 30;
+export const TEMP_MAX = 35;
+export const HUM_MIN = 40;
+export const HUM_MAX = 60;
+export const LIGHT_MIN = 300;
+export const LIGHT_MAX = 500;
 
 export const GROUP_IDS: string[] = Array.from(
   { length: 16 },
@@ -71,13 +77,14 @@ export function statusOf(live: LiveData | null, limits: Limits, now: number): St
 
 export type Kondisi = "baik" | "periksa" | "tunggu";
 
-/** Kondisi ruangan berdasarkan suhu & kelembapan terhadap threshold */
+/** Kondisi ruangan berdasarkan suhu, kelembapan, dan cahaya terhadap threshold */
 export function conditionOf(g: Group): Kondisi {
   if (g.status === "offline") return "tunggu";
-  if (g.temperature == null || g.humidity == null) return "tunggu";
-  const tOk = g.temperature >= g.limits.tempMin && g.temperature <= g.limits.tempMax;
+  if (g.temperature == null || g.humidity == null || g.light == null) return "tunggu";
+  const tOk = g.temperature >= TEMP_MIN && g.temperature <= TEMP_MAX;
   const hOk = g.humidity >= HUM_MIN && g.humidity <= HUM_MAX;
-  return tOk && hOk ? "baik" : "periksa";
+  const lOk = g.light >= LIGHT_MIN && g.light <= LIGHT_MAX;
+  return tOk && hOk && lOk ? "baik" : "periksa";
 }
 
 /** "5 detik lalu", "3 menit lalu", dst. */
