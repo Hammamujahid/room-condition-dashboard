@@ -18,14 +18,15 @@ interface ParamProps {
   value?: number;
   unit: string;
   cls: string;
+  icCls: string;
 }
 
-function Param({ icon, label, value, unit, cls }: ParamProps) {
+function Param({ icon, label, value, unit, cls, icCls }: ParamProps) {
   const empty = value == null;
   return (
     <div className="param">
       <span className="param-top">
-        <Icon name={icon} className="param-ic" />
+        <Icon name={icon} className={`param-ic ${empty ? "" : icCls}`} />
         <span className="param-l">{label}</span>
       </span>
       <span className={`param-v ${empty ? "" : cls}`}>
@@ -58,9 +59,9 @@ export default function GroupCard({ g, now }: { g: Group; now: number }) {
       </div>
 
       <div className="param-row">
-        <Param icon="thermometer" label="Suhu" value={g.temperature} unit="°C" cls={tOut ? "danger" : cls("c-t")} />
-        <Param icon="droplet" label="Kelembapan" value={g.humidity} unit="%" cls={hOut ? "danger" : cls("c-h")} />
-        <Param icon="sun" label="Cahaya" value={g.light} unit="lux" cls={lOut ? "danger" : cls("c-l")} />
+        <Param icon="thermometer" label="Suhu" value={g.temperature} unit="°C" cls={tOut ? "danger" : cls("c-t")} icCls={cls("c-t")} />
+        <Param icon="droplet" label="Kelembapan" value={g.humidity} unit="%" cls={hOut ? "danger" : cls("c-h")} icCls={cls("c-h")} />
+        <Param icon="sun" label="Cahaya" value={g.light} unit="lux" cls={lOut ? "danger" : cls("c-l")} icCls={cls("c-l")} />
       </div>
 
       <div className="batt-row">
