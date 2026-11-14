@@ -50,7 +50,7 @@ export const LABS: LabDef[] = [
   { id: "kelompok08", num: 8, name: "Laboratorium Teknik Tenaga Listrik (1)", desc: "Praktikum pembangkit, transmisi, dan distribusi tenaga listrik.", icon: "bolt", category: "listrik" },
   { id: "kelompok09", num: 9, name: "Laboratorium Teknik Tenaga Listrik (2)", desc: "Praktikum lanjutan: mesin listrik, pengukuran daya, dan proteksi.", icon: "plug", category: "listrik" },
   { id: "kelompok10", num: 10, name: "Laboratorium Sensor", desc: "Karakterisasi dan pengujian berbagai jenis sensor dan transduser.", icon: "radio", category: "elektronika" },
-  { id: "kelompok11", num: 11, name: "Laboratorium Tegar", desc: "Ruang uji keandalan dan penyimpanan perangkat praktikum.", icon: "shield", category: "metrologi" },
+  { id: "kelompok11", num: 11, name: "Laboratorium Bedah", desc: "Ruang uji keandalan dan penyimpanan perangkat praktikum.", icon: "shield", category: "metrologi" },
   { id: "kelompok12", num: 12, name: "Laboratorium Life Support", desc: "Pemeliharaan alat penunjang hidup: ventilator, defibrilator, monitor pasien.", icon: "heartPulse", category: "medis" },
   { id: "kelompok13", num: 13, name: "Laboratorium Elektronika (1)", desc: "Dasar elektronika analog: rangkaian op-amp, dioda, dan transistor.", icon: "activity", category: "elektronika" },
   { id: "kelompok14", num: 14, name: "Laboratorium Fisika Kedokteran", desc: "Penerapan fisika dalam kedokteran: radiasi, ultrasonik, dan pencitraan.", icon: "atom", category: "medis" },
