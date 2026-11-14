@@ -38,7 +38,7 @@ export const LABS: LabDef[] = [
   { id: "kelompok02", num: 2, name: "Laboratorium Digital", desc: "Praktikum logika digital: gerbang, flip-flop, hingga rangkaian sekuensial.", icon: "gate", category: "komputasi" },
   { id: "kelompok03", num: 3, name: "Laboratorium Devais Terprogram", desc: "Perancangan perangkat terprogram berbasis mikrokontroler dan SBC.", icon: "cpu", category: "komputasi" },
   { id: "kelompok04", num: 4, name: "Laboratorium Komputer", desc: "Perakitan, perawatan, dan jaringan komputer.", icon: "monitor", category: "komputasi" },
-  { id: "kelompok05", num: 5, name: "Laboratorium Bengkel", desc: "Fabrikasi mekanik, pengerjaan panel, dan perakitan alat.", icon: "wrench", category: "listrik" },
+  { id: "kelompok05", num: 5, name: "Lab Bengkel", desc: "Fabrikasi mekanik, pengerjaan panel, dan perakitan alat.", icon: "wrench", category: "listrik" },
   { id: "kelompok06", num: 6, name: "Laboratorium Radiologi Dasar", desc: "Praktikum dasar radiologi dan pencitraan diagnostik.", icon: "radiation", category: "medis" },
   { id: "kelompok07", num: 7, name: "Laboratorium Klinik", desc: "Simulasi penggunaan alat kesehatan dalam pelayanan klinik.", icon: "stethoscope", category: "medis" },
   { id: "kelompok08", num: 8, name: "Laboratorium Teknik Tenaga Listrik (1)", desc: "Praktikum pembangkit, transmisi, dan distribusi tenaga listrik.", icon: "bolt", category: "listrik" },
