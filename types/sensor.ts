@@ -15,6 +15,43 @@ export interface LiveData {
   updatedAt?: number;
 }
 
+/** Kategori klasifikasi laboratorium */
+export type CategoryId =
+  | "komputasi"
+  | "elektronika"
+  | "listrik"
+  | "medis"
+  | "metrologi";
+
+/** Nama ikon SVG yang tersedia di components/Icons.tsx */
+export type IconName =
+  | "grid"
+  | "cpu"
+  | "chip"
+  | "gate"
+  | "monitor"
+  | "wrench"
+  | "radiation"
+  | "stethoscope"
+  | "bolt"
+  | "plug"
+  | "radio"
+  | "shield"
+  | "heartPulse"
+  | "activity"
+  | "atom"
+  | "gauge"
+  | "circuit"
+  | "battery"
+  | "sun"
+  | "thermometer"
+  | "droplet"
+  | "search"
+  | "menu"
+  | "x"
+  | "clock"
+  | "wifiOff";
+
 /** Bentuk dokumen di Firestore: groups/kelompokNN */
 export interface GroupMeta {
   name?: string;
@@ -26,6 +63,10 @@ export interface GroupMeta {
 export interface Group {
   id: string;
   name: string;
+  short: string;
+  desc: string;
+  icon: IconName;
+  category: CategoryId;
   limits: Limits;
   battery?: number;
   light?: number;

@@ -3,16 +3,15 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SensorWatch – Monitoring Sensor 16 Kelompok",
-  description: "Monitoring realtime baterai, intensitas cahaya, suhu, dan kelembapan.",
+  title: "SensorWatch – Monitoring 16 Laboratorium",
+  description:
+    "Monitoring realtime baterai, intensitas cahaya, suhu, dan kelembapan di 16 laboratorium.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="id">
-      <body>
-        <main className="wrap">{children}</main>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

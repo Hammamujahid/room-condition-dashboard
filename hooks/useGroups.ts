@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { onValue, ref } from "firebase/database";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db, rtdb } from "@/lib/firebase";
-import { DEFAULT_LIMITS, GROUP_IDS, labelFromId, statusOf } from "@/lib/sensors";
+import { DEFAULT_LIMITS, GROUP_IDS, labDef, statusOf } from "@/lib/sensors";
 import type { Group, GroupMeta, LiveData } from "@/types/sensor";
 
 export function useGroups() {
@@ -39,10 +39,15 @@ export function useGroups() {
     return ids.map((id) => {
       const m = meta[id] ?? {};
       const limits = { ...DEFAULT_LIMITS, ...m.limits };
+      const def = labDef(id);
       const d = live?.[id] ?? null;
       return {
         id,
-        name: m.name || labelFromId(id),
+        name: m.name || labelFallback(id),
+        short: def?.name || m.name || labelFallback(id),
+        desc: def?.desc || "Belum ada deskripsi laboratorium.",
+        icon: def?.icon || "grid",
+        category: def?.category || "metrologi",
         limits,
         battery: d?.battery,
         light: d?.light,
@@ -55,4 +60,8 @@ export function useGroups() {
   }, [live, meta, now]);
 
   return { groups, loading: live === null, now };
+}
+
+function labelFallback(id: string): string {
+  return `Kelompok ${id.replace("kelompok", "")}`;
 }
